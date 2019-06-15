@@ -1,0 +1,5 @@
+boolean arvind = true; // The line is declaring a boolean with a value
+int hello = 69; // The line is declaring an integer with a value
+if ( hello > 7) { // This line is the heading of a if condition, it reads declare if condition hello greater than 7
+System.out.println( " hello is greater"); // output text hello is greater
+} // Ending the previous condition
