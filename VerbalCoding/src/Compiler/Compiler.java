@@ -295,7 +295,7 @@ private String inputtingInt (String stringInput) throws Exception { //works (MOD
 	finalReturn = stringInput + " // " + descriptionOfLine;
 	return finalReturn;
 }
-private String inputtingDecimal (String stringInput) throws Exception { //works
+private String inputtingDecimal (String stringInput) throws Exception { //works (Done)
 	//input user decimal num to variable alpha , num <- (or any other variable name)
 	//Scanner a = new Scanner(System.in);
 	//alpha = a.nextDouble();
@@ -356,13 +356,13 @@ private String inputtingDecimal (String stringInput) throws Exception { //works
 	finalReturn = stringInput + " // " + descriptionOfLine;
 	return finalReturn;
 }
-private String inputtingCharacter (String stringInput) throws Exception { //works
+private String inputtingCharacter (String stringInput) throws Exception { //works (Done)
 	//input user character to variable alpha
 	char scanName = (char) numScanners;
 	String charName = "";
 	boolean preExisitingVariable = false;
 	boolean preExistingChar = false;
-	stringInput = stringInput.replace("input user character","Scanner"+scanName);
+	stringInput = stringInput.replace("input user character","Scanner "+scanName);
 	stringInput = stringInput.replace("to var","= new Scanner(System.in);\n ");
 	stringInput = stringInput.replace("iable","char");
 	stringInput = stringInput + " = ";
@@ -393,7 +393,7 @@ private String inputtingCharacter (String stringInput) throws Exception { //work
 		if (charArrayList.get(i).returnName().equals(charName)) {
 			boolean exisitingBool = true;
 	 		if (exisitingBool) 
-	 		stringInput = stringInput.replace("double ","");	
+	 		stringInput = stringInput.replace("character ","");	
 		}
 	}
 	if (preExisitingVariable) 
@@ -414,23 +414,119 @@ private String inputtingCharacter (String stringInput) throws Exception { //work
 	finalReturn = stringInput + " // " + descriptionOfLine;
 	return finalReturn;
 }
-private String inputtingBoolean (String stringInput) throws Exception { //works
+private String inputtingBoolean (String stringInput) throws Exception { //works (Done)
 	//input user character num to variable alpha , num <- (or any other variable name)
-	stringInput = stringInput.replace("input user boolean","Scanner");
+	char scanName = (char) numScanners;
+	String boolName = "";
+	boolean preExisitingVariable = false;
+	boolean preExistingBool = false;
+	stringInput = stringInput.replace("input user boolean","Scanner "+scanName);
 	stringInput = stringInput.replace("to var","= new Scanner(System.in);\n ");
 	stringInput = stringInput.replace("iable","boolean");
-	stringInput = stringInput.replace(" , "," = ");
-	stringInput = stringInput + ".nextBoolean();";
+	stringInput = stringInput + " = ";
+	stringInput = stringInput + scanName + ".nextBoolean();";
+	String[] parts = stringInput.split(";\nboolean ");
+	boolName = parts[1].replace(" = "+scanName+".nextBoolean();","");
+	for (int i = 0; i < doubleArrayList.size(); i++) {
+		if (doubleArrayList.get(i).returnName().equals(boolName)) 
+			preExisitingVariable = true;
+		
+	}
+	for (int i = 0; i < charArrayList.size(); i++) {
+		if (charArrayList.get(i).returnName().equals(boolName)) 
+			preExisitingVariable = true;
+	
+	}
+	for (int i = 0; i < intArrayList.size(); i++) {
+		if (intArrayList.get(i).returnName().equals(boolName)) 
+			preExisitingVariable = true;
+	
+	}
+	for (int i = 0; i < stringArrayList.size(); i++) {
+		if (stringArrayList.get(i).returnName().equals(boolName)) 
+			preExisitingVariable = true;
+	
+	}
+	for (int i = 0; i < booleanArrayList.size(); i++) {
+		if (booleanArrayList.get(i).returnName().equals(boolName)) {
+			boolean exisitingBool = true;
+	 		if (exisitingBool) 
+	 		stringInput = stringInput.replace("boolean ","");	
+		}
+	}
+	if (preExisitingVariable) 
+		throw new Exception("This variable name already exists");
+	for (int i = 0; i < booleanArrayList.size(); i++) {
+		if ((booleanArrayList.get(i).returnName()).equals(boolName)) {
+			Scanner s = new Scanner(System.in);
+			System.out.println("The current value of " + boolName + " is " + booleanArrayList.get(i).returnValue() + ". Are you sure you want to change it?");
+			boolean confirm = s.nextBoolean();
+			if (confirm)
+				booleanArrayList.get(i).changeVal("User Input");
+			i = booleanArrayList.size();
+			preExistingBool = true;
+		}
+	}
+	if (preExistingBool == false)
+		booleanArrayList.add(new Buuleans(boolName,"User Input",true));
 	finalReturn = stringInput + " // " + descriptionOfLine;
 	return finalReturn;
 }
-private String inputtingString (String stringInput) throws Exception { //works``
+private String inputtingString (String stringInput) throws Exception { //works (Done)
 	//input user string num to variable alpha , num <- (or any other variable name)
-	stringInput = stringInput.replace("input user string","Scanner");
+	boolean preExisitingVariable = false;
+	boolean preExistingString = false;
+	String stringName = "";
+	char scanName = (char) numScanners;
+	stringInput = stringInput.replace("input user string","Scanner "+scanName);
 	stringInput = stringInput.replace("to var","= new Scanner(System.in);\n ");
 	stringInput = stringInput.replace("iable","String");
-	stringInput = stringInput.replace(" , "," = ");
-	stringInput = stringInput + ".toString();";
+	stringInput = stringInput + " = "; //Scanner a = new Scanner(System.in); String alpha = a.nextInt();
+	stringInput = stringInput + scanName + ".nextString();";
+	String[] parts = stringInput.split(";\nString");
+	stringName = parts[1].replace(" = "+scanName+".nextString();","");
+	for (int i = 0; i < doubleArrayList.size(); i++) {
+		if (doubleArrayList.get(i).returnName().equals(stringName)) 
+			preExisitingVariable = true;
+		
+	}
+	for (int i = 0; i < charArrayList.size(); i++) {
+		if (charArrayList.get(i).returnName().equals(stringName)) 
+			preExisitingVariable = true;
+	
+	}
+	for (int i = 0; i < booleanArrayList.size(); i++) {
+		if (booleanArrayList.get(i).returnName().equals(stringName)) 
+			preExisitingVariable = true;
+	
+	}
+	for (int i = 0; i < intArrayList.size(); i++) {
+		if (intArrayList.get(i).returnName().equals(stringName)) 
+			preExisitingVariable = true;
+	
+	}
+	for (int i = 0; i < stringArrayList.size(); i++) {
+		if (stringArrayList.get(i).returnName().equals(stringName)) {
+			boolean exisitingBool = true;
+	 		if (exisitingBool) 
+	 		stringInput = stringInput.replace("string ","");	
+		}
+	}
+	if (preExisitingVariable) 
+		throw new Exception("This variable name already exists");
+	for (int i = 0; i < stringArrayList.size(); i++) {
+		if ((stringArrayList.get(i).returnName()).equals(stringName)) {
+			Scanner s = new Scanner(System.in);
+			System.out.println("The current value of " + stringName + " is " + stringArrayList.get(i).returnValue() + ". Are you sure you want to change it?");
+			boolean confirm = s.nextBoolean();
+			if (confirm)
+				stringArrayList.get(i).changeVal("User Input");
+			i = stringArrayList.size();
+			preExistingString = true;
+		}
+	}
+	if (preExistingString == false)
+		stringArrayList.add(new Strings(stringName,"User Input",true));
 	finalReturn = stringInput + " // " + descriptionOfLine;
 	return finalReturn;
 }
@@ -465,7 +561,7 @@ private String array (String stringInput) throws Exception { //work in progress
 	finalReturn = stringInput + " // " + descriptionOfLine;
 	return finalReturn;
 }
-private String concatenatedOutput (String stringInput) throws Exception { //works
+private String concatenatedOutput (String stringInput) throws Exception { //works (Done)
 	//concatenated output with text Hello my name is ENDtext and variable name and number 14
 	//System.out.println("Hello my name is" + name + 14);
 	stringInput = stringInput.replace(CONCATENATEDOUTPUT, "System.out.println(");
